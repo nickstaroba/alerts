@@ -10,12 +10,15 @@ export const Alert = ({
   title,
   url,
 }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   const handleCloseAlert = () => {
     setShow(false);
-    handleClose(id);
   };
+
+  useEffect(() => {
+    setShow(true);
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -37,7 +40,16 @@ export const Alert = ({
   );
 
   return (
-    <Collapse in={show} unmountOnExit={true}>
+    <Collapse
+      in={show}
+      onExit={() => {
+        setTimeout(() => {
+          handleClose(id);
+        }, 500);
+      }}
+      timeout={500}
+      unmountOnExit={true}
+    >
       <MuiAlert onClose={handleCloseAlert} severity={severity}>
         {titleContent}
         {messageContent}
