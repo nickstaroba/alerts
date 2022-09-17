@@ -20,11 +20,18 @@ export const alertsReducer = (state, action) => {
 export const useAlertsReducer = () =>
   useReducer(alertsReducer, [], () => [
     {
+      href: "",
       id: uuid(),
       message: "Default alert loaded.",
       severity: "success",
-      timeLimit: 3,
+      timeout: 3,
       title: "Done!",
-      url: "",
+    }, {
+      href: "",
+      id: uuid(),
+      message: "Default alert loaded.",
+      severity: "success",
+      timeout: 5,
+      title: "Done!",
     },
   ]);

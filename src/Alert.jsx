@@ -3,36 +3,42 @@ import React, { useEffect, useState } from "react";
 
 export const Alert = ({
   handleClose,
+  href = "",
   id,
   message,
   severity,
-  timeLimit = 10,
-  title,
-  url,
+  sx,
+  timeoutSeconds = 10,
+  title = "",
 }) => {
-  const [show, setShow] = useState(false);
+  const [collapseIn, setCollapseIn] = useState(false);
 
-  const handleCloseAlert = () => {
-    setShow(false);
+  const COLLAPSE_TIMEOUT = 500;
+
+  const handleCloseMuiAlert = () => {
+    setCollapseIn(false);
+  };
+
+  const handleCollapseExit = () => {
+    setTimeout(() => {
+      handleClose(id);
+    }, COLLAPSE_TIMEOUT);
   };
 
   useEffect(() => {
-    setShow(true);
+    setCollapseIn(true);
   }, []);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      handleCloseAlert();
-    }, timeLimit * 1000);
-    return () => {
-      clearTimeout(timeoutId);
-    };
+    setTimeout(() => {
+      handleCloseMuiAlert();
+    }, timeoutSeconds * 1000);
   }, []);
 
   const titleContent = title ? <AlertTitle>{title}</AlertTitle> : null;
 
-  const messageContent = url ? (
-    <Link href={url} sx={{ cursor: "pointer" }}>
+  const messageContent = href ? (
+    <Link href={href} sx={{ cursor: "pointer" }}>
       {message}
     </Link>
   ) : (
@@ -41,16 +47,12 @@ export const Alert = ({
 
   return (
     <Collapse
-      in={show}
-      onExit={() => {
-        setTimeout(() => {
-          handleClose(id);
-        }, 500);
-      }}
-      timeout={500}
+      in={collapseIn}
+      onExit={handleCollapseExit}
+      timeout={COLLAPSE_TIMEOUT}
       unmountOnExit={true}
     >
-      <MuiAlert onClose={handleCloseAlert} severity={severity}>
+      <MuiAlert onClose={handleCloseMuiAlert} severity={severity} sx={sx}>
         {titleContent}
         {messageContent}
       </MuiAlert>

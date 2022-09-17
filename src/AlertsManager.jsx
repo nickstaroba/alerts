@@ -13,7 +13,7 @@ export const AlertsManager = () => {
 
   const alertsContent =
     alerts.length > 0
-      ? alerts.map(({ id, message, severity, timeLimit, title, url }) => {
+      ? alerts.map(({ id, message, severity, timeout, title, href }) => {
           return (
             <Alert
               key={id}
@@ -21,9 +21,10 @@ export const AlertsManager = () => {
               message={message}
               handleClose={handleCloseAlert}
               severity={severity}
-              timeLimit={timeLimit}
+              sx={{ marginBottom: 2, width: 300 }}
+              timeoutSeconds={timeout}
               title={title}
-              url={url}
+              href={href}
             />
           );
         })
@@ -34,7 +35,6 @@ export const AlertsManager = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gridGap: 12,
         padding: 2,
         position: "absolute",
         right: 0,
