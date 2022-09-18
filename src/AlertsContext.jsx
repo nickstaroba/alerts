@@ -1,16 +1,3 @@
-import React, { createContext } from "react";
-import { useAlertsReducer } from "./AlertsReducer";
-import { AlertsManager } from "./AlertsManager";
+import { createContext } from "react";
 
 export const AlertsContext = createContext({});
-
-export const AlertsProvider = ({ children }) => {
-  const [state, dispatch] = useAlertsReducer();
-
-  return (
-    <AlertsContext.Provider value={{ state, dispatch }}>
-      <AlertsManager />
-      {children}
-    </AlertsContext.Provider>
-  );
-};

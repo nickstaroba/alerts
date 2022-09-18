@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React, { useContext } from "react";
+
 import { Alert } from "./Alert";
 import { AlertsContext } from "./AlertsContext";
 import { ALERT_ACTIONS } from "./AlertsReducer";
@@ -13,21 +14,19 @@ export const AlertsManager = () => {
 
   const alertsContent =
     alerts.length > 0
-      ? alerts.map(({ id, message, severity, timeout, title, href }) => {
-          return (
-            <Alert
-              key={id}
-              id={id}
-              message={message}
-              handleClose={handleCloseAlert}
-              severity={severity}
-              sx={{ marginBottom: 2, width: 300 }}
-              timeoutSeconds={timeout}
-              title={title}
-              href={href}
-            />
-          );
-        })
+      ? alerts.map(({ id, message, severity, timeout, title, href }) => (
+          <Alert
+            key={id}
+            id={id}
+            message={message}
+            handleClose={handleCloseAlert}
+            severity={severity}
+            sx={{ marginBottom: 2, width: 300 }}
+            timeoutSeconds={timeout}
+            title={title}
+            href={href}
+          />
+        ))
       : null;
 
   return (

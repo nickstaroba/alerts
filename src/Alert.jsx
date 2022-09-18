@@ -33,7 +33,7 @@ export const Alert = ({
     setTimeout(() => {
       handleCloseMuiAlert();
     }, timeoutSeconds * 1000);
-  }, []);
+  }, [timeoutSeconds]);
 
   const titleContent = title ? <AlertTitle>{title}</AlertTitle> : null;
 

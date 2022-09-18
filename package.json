@@ -3,25 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "dependencies": {
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
-    "@hookform/resolvers": "2.9.8",
-    "@mui/material": "5.10.4",
-    "@mui/icons-material": "5.10.3",
-    "prettier": "2.7.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-hook-form": "7.35.0",
-    "react-scripts": "5.0.1",
-    "uuid": "9.0.0",
-    "wouter": "2.8.0-alpha.2",
-    "yup": "0.32.11"
+    "eject": "react-scripts eject",
+    "lint": "npm run lint::prettier && npm run lint::eslint",
+    "lint::eslint": "eslint \"**/*.{js,jsx}\" --fix",
+    "lint::prettier": "prettier \"./**/*.{css,html,js,json,jsx,md}\" --write",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -34,5 +22,22 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
+    "@eterna/eslint-config-javascript": "1.1.0",
+    "@eterna/eslint-config-react": "1.1.0",
+    "@hookform/resolvers": "2.9.8",
+    "@mui/icons-material": "5.10.3",
+    "@mui/material": "5.10.4",
+    "prettier": "2.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.35.0",
+    "react-scripts": "5.0.1",
+    "uuid": "9.0.0",
+    "wouter": "2.8.0-alpha.2",
+    "yup": "0.32.11"
   }
 }

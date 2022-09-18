@@ -1,3 +1,5 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import ClearIcon from "@mui/icons-material/Clear";
 import {
   Box,
   Button,
@@ -9,14 +11,13 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
 import React, { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { ALERT_ACTIONS } from "./AlertsReducer";
-import { AlertsContext } from "./AlertsContext";
 import { v4 as uuid } from "uuid";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+import { AlertsContext } from "./AlertsContext";
+import { ALERT_ACTIONS } from "./AlertsReducer";
 
 const ControlledTextField = ({
   control,
@@ -67,7 +68,7 @@ const ControlledTextField = ({
                 <ClearIcon sx={{ height: 16, width: 16 }} />
               </IconButton>
             ),
-            inputProps: inputProps,
+            inputProps,
           }}
           label={label}
           multiline={multiline}
@@ -142,14 +143,15 @@ export const CreateAlert = () => {
     formState: { errors, isDirty, isValid },
     handleSubmit,
     setValue,
+    trigger,
     watch,
   } = useForm({
     defaultValues: {
-      href: "http://google.com/",
+      href: "",
       message: "",
       severity: "warning",
       timeout: 5,
-      title: "",
+      title: "Title",
     },
     mode: "onChange",
     resolver: yupResolver(validationSchema),
@@ -164,9 +166,13 @@ export const CreateAlert = () => {
     });
 
   useEffect(() => {
-    setValue("title", "Title", { shouldDirty: true });
-    setValue("message", `This message will expire in ${watchTimeout} seconds.`);
-  }, [watchTimeout, setValue]);
+    setValue(
+      "message",
+      `This message will expire in ${watchTimeout} seconds.`,
+      { shouldDirty: true }
+    );
+    trigger("message");
+  }, [watchTimeout, setValue, trigger]);
 
   return (
     <Box

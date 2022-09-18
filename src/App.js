@@ -1,7 +1,8 @@
-import * as React from "react";
-import { CreateAlert } from "./CreateAlert";
-import { Link, Route } from "wouter";
 import { Box, Container, Typography } from "@mui/material";
+import * as React from "react";
+import { Link, Route } from "wouter";
+
+import { CreateAlert } from "./CreateAlert";
 
 export default function App() {
   return (
