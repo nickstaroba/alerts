@@ -19,13 +19,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const ControlledTextField = ({
-  name,
   control,
   errors,
   handleClear,
   label,
-  min = 1,
   max = 20,
+  min = 1,
+  multiline,
+  name,
   required = false,
   type = "text",
 }) => {
@@ -57,7 +58,10 @@ const ControlledTextField = ({
           InputProps={{
             endAdornment: !!handleClear && (
               <IconButton
-                sx={{ visibility: value ? "visible" : "hidden" }}
+                sx={{
+                  // alignSelf: "flex-start",
+                  visibility: value ? "visible" : "hidden",
+                }}
                 onClick={handleClear}
               >
                 <ClearIcon sx={{ height: 16, width: 16 }} />
@@ -66,6 +70,7 @@ const ControlledTextField = ({
             inputProps: inputProps,
           }}
           label={label}
+          multiline={multiline}
           onChange={onChange}
           required={required}
           value={value}
@@ -121,7 +126,7 @@ export const ControlledRadioInput = ({ name, control }) => {
   );
 };
 
-export const AlertsExample = () => {
+export const CreateAlert = () => {
   const { dispatch } = useContext(AlertsContext);
 
   const validationSchema = yup.object().shape({
@@ -132,10 +137,16 @@ export const AlertsExample = () => {
     href: yup.string(),
   });
 
-  const { control, formState, handleSubmit, setValue } = useForm({
+  const {
+    control,
+    formState: { errors, isDirty, isValid },
+    handleSubmit,
+    setValue,
+    watch,
+  } = useForm({
     defaultValues: {
       href: "http://google.com/",
-      message: "Message",
+      message: "",
       severity: "warning",
       timeout: 5,
       title: "",
@@ -144,7 +155,7 @@ export const AlertsExample = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const { errors, isDirty, isValid } = formState;
+  const watchTimeout = watch("timeout");
 
   const onSubmit = (data) =>
     dispatch({
@@ -154,11 +165,16 @@ export const AlertsExample = () => {
 
   useEffect(() => {
     setValue("title", "Title", { shouldDirty: true });
-  }, [setValue]);
+    setValue("message", `This message will expire in ${watchTimeout} seconds.`);
+  }, [watchTimeout, setValue]);
 
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", gridGap: 16, width: 300 }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gridGap: 16,
+      }}
     >
       <FormLabel
         id="create-alert"
@@ -182,6 +198,7 @@ export const AlertsExample = () => {
           setValue("message", "");
         }}
         label={"Message"}
+        multiline
         name={"message"}
         required
       />

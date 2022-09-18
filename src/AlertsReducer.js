@@ -22,16 +22,9 @@ export const useAlertsReducer = () =>
     {
       href: "",
       id: uuid(),
-      message: "Default alert loaded.",
-      severity: "success",
-      timeout: 3,
-      title: "Done!",
-    }, {
-      href: "",
-      id: uuid(),
-      message: "Default alert loaded.",
-      severity: "success",
-      timeout: 5,
-      title: "Done!",
+      message: "This is an example alert. It will expire in 10 seconds.",
+      severity: "info",
+      timeout: 10,
+      title: "Welcome",
     },
   ]);
