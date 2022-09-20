@@ -60,7 +60,6 @@ const ControlledTextField = ({
             endAdornment: !!handleClear && (
               <IconButton
                 sx={{
-                  // alignSelf: "flex-start",
                   visibility: value ? "visible" : "hidden",
                 }}
                 onClick={handleClear}

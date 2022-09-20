@@ -30,17 +30,23 @@ export const AlertsManager = () => {
       : null;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 2,
-        position: "absolute",
-        right: 0,
-        top: 0,
-      }}
-    >
-      {alertsContent}
-    </Box>
+    alerts.length > 0 && (
+      <Box
+        sx={{
+          backgroundColor: "#FFFFFFBF",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          padding: 2,
+          paddingBottom: 0,
+          position: "absolute",
+          right: 0,
+          top: 0,
+          zIndex: 10,
+        }}
+      >
+        {alertsContent}
+      </Box>
+    )
   );
 };
