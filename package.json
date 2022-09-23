@@ -2,9 +2,11 @@
   "name": "alerts",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://nickstaroba.github.io/alerts/",
   "scripts": {
     "build": "react-scripts build",
-    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint": "npm run lint::prettier && npm run lint::eslint",
     "lint::eslint": "eslint \"**/*.{js,jsx}\" --fix",
     "lint::prettier": "prettier \"./**/*.{css,html,js,json,jsx,md}\" --write",
@@ -39,5 +41,8 @@
     "uuid": "9.0.0",
     "wouter": "2.8.0-alpha.2",
     "yup": "0.32.11"
+  },
+  "devDependencies": {
+    "gh-pages": "4.0.0"
   }
 }
