@@ -20,9 +20,9 @@ export const alertsReducer = (state, action) => {
 const MOCK_ALERT = {
   href: "",
   id: uuid(),
-  message: "This is an example alert. It will expire in 10 seconds.",
+  message: "This is an example alert!",
   severity: "info",
-  timeout: 5,
+  timeout: 10,
   title: "Welcome",
 };
 

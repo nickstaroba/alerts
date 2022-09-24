@@ -165,11 +165,7 @@ export const CreateAlert = () => {
     });
 
   useEffect(() => {
-    setValue(
-      "message",
-      `This message will expire in ${watchTimeout} seconds.`,
-      { shouldDirty: true }
-    );
+    setValue("message", "Message", { shouldDirty: true });
     trigger("message");
   }, [watchTimeout, setValue, trigger]);
 
