@@ -5,16 +5,21 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install Node
-        uses: actions/setup-node@v2
-      - name: Install Packages
-        run: npm ci --ignore-scripts
-      - name: Deploy
-        run: npm run deploy
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install dependencies
+        run: npm install
+      - name: Build NPM package
+        run: npm run build
+      - name: Publish github pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
