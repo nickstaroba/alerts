@@ -1,0 +1,20 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v2
+      - name: Install Packages
+        run: npm ci --ignore-scripts
+      - name: Deploy
+        run: npm run deploy
