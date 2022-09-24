@@ -21,7 +21,11 @@ export const AlertsManager = () => {
             message={message}
             handleClose={handleCloseAlert}
             severity={severity}
-            sx={{ marginBottom: 2, width: 300 }}
+            sx={{
+              marginBottom: 2,
+              width: 300,
+              ".MuiAlert-message": { width: "100%" },
+            }}
             timeoutSeconds={timeout}
             title={title}
             href={href}
