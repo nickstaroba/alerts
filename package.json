@@ -10,6 +10,7 @@
     "lint": "npm run lint::prettier && npm run lint::eslint",
     "lint::eslint": "eslint \"**/*.{js,jsx}\" --fix",
     "lint::prettier": "prettier \"./**/*.{css,html,js,json,jsx,md}\" --write",
+    "prepare": "husky install",
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
@@ -43,6 +44,7 @@
     "yup": "0.32.11"
   },
   "devDependencies": {
-    "gh-pages": "4.0.0"
+    "gh-pages": "4.0.0",
+    "husky": "8.0.1"
   }
 }
