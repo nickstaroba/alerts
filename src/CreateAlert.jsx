@@ -134,7 +134,7 @@ export const CreateAlert = () => {
     message: yup.string().required(),
     severity: yup.string(),
     timeout: yup.number().integer().min(1).max(20).required(),
-    href: yup.string(),
+    href: yup.string().url(),
   });
 
   const {
@@ -146,7 +146,7 @@ export const CreateAlert = () => {
     watch,
   } = useForm({
     defaultValues: {
-      href: "",
+      href: "https://google.com/",
       message: "",
       severity: "warning",
       timeout: 5,
