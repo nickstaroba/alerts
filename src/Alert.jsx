@@ -17,7 +17,7 @@ export const Alert = ({
   timeoutSeconds = 10,
   title = "",
 }) => {
-  const [collapseIn, setCollapseIn] = useState(false);
+  const [collapseIn, setCollapseIn] = useState(true);
 
   // The progress bar needs to account for the time to collapse the alert.
   const COLLAPSE_TIMEOUT_MS = 500;
@@ -40,10 +40,6 @@ export const Alert = ({
       handleClose(id);
     }, COLLAPSE_TIMEOUT_MS);
   };
-
-  useEffect(() => {
-    setCollapseIn(true);
-  }, []);
 
   useEffect(() => {
     setTimeout(() => {
