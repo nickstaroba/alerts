@@ -10,6 +10,7 @@ import {
   Radio,
   RadioGroup,
   TextField,
+  Typography,
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -143,7 +144,6 @@ export const CreateAlert = () => {
     handleSubmit,
     setValue,
     trigger,
-    watch,
   } = useForm({
     defaultValues: {
       href: "https://google.com/",
@@ -156,8 +156,6 @@ export const CreateAlert = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const watchTimeout = watch("timeout");
-
   const onSubmit = (data) =>
     dispatch({
       type: ALERT_ACTIONS.ADD_ALERT,
@@ -167,21 +165,23 @@ export const CreateAlert = () => {
   useEffect(() => {
     setValue("message", "Message", { shouldDirty: true });
     trigger("message");
-  }, [watchTimeout, setValue, trigger]);
+  }, [setValue, trigger]);
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        gridGap: 16,
+        gap: 2,
       }}
     >
-      <FormLabel
-        id="create-alert"
-        sx={{ fontSize: 24, fontWeight: "bold", marginBottom: 2 }}
-      >
-        Create Alert
+      <FormLabel id={"create-alert"}>
+        <Typography
+          component={"h1"}
+          sx={{ fontSize: 24, fontWeight: 700, marginY: 2 }}
+        >
+          Create Alert
+        </Typography>
       </FormLabel>
       <ControlledTextField
         control={control}
@@ -222,7 +222,7 @@ export const CreateAlert = () => {
       />
       <ControlledRadioInput name={"severity"} control={control} />
       <Button
-        color={"primary"}
+        color={"secondary"}
         disabled={!isDirty || !isValid}
         onClick={handleSubmit(onSubmit)}
         variant={"contained"}

@@ -21,3 +21,8 @@ npm start
 ```sh
 npm run deploy
 ```
+
+or
+
+Go to Github Actions > Deploy > Run Workflow
+

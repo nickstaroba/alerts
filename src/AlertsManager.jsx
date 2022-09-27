@@ -1,5 +1,7 @@
-import { Box } from "@mui/material";
-import React, { useContext } from "react";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Badge, Box, IconButton, Popover, Tooltip } from "@mui/material";
+import pluralize from "pluralize";
+import React, { useContext, useEffect } from "react";
 
 import { Alert } from "./Alert";
 import { AlertsContext } from "./AlertsContext";
@@ -7,10 +9,23 @@ import { ALERT_ACTIONS } from "./AlertsReducer";
 
 export const AlertsManager = () => {
   const { state: alerts, dispatch } = useContext(AlertsContext);
+  const [anchorAlerts, setAnchorAlerts] = React.useState(null);
+
+  const handleOpenAlerts = (event) => {
+    if (alerts.length !== 0) setAnchorAlerts(event.currentTarget);
+  };
+
+  const handleCloseAlerts = () => {
+    setAnchorAlerts(null);
+  };
 
   const handleCloseAlert = (id) => {
     dispatch({ type: ALERT_ACTIONS.REMOVE_ALERT, id });
   };
+
+  useEffect(() => {
+    if (alerts.length === 0) handleCloseAlerts();
+  }, [alerts]);
 
   const alertsContent =
     alerts.length > 0
@@ -22,8 +37,8 @@ export const AlertsManager = () => {
             handleClose={handleCloseAlert}
             severity={severity}
             sx={{
-              marginBottom: 2,
-              width: 300,
+              marginX: 1,
+              width: { sm: 300 },
               ".MuiAlert-message": { width: "100%" },
             }}
             timeoutSeconds={timeout}
@@ -34,23 +49,49 @@ export const AlertsManager = () => {
       : null;
 
   return (
-    alerts.length > 0 && (
-      <Box
-        sx={{
-          backgroundColor: "#FFFFFFBF",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          padding: 2,
-          paddingBottom: 0,
-          position: "absolute",
-          right: 0,
-          top: 0,
-          zIndex: 10,
-        }}
+    <Box>
+      <Tooltip
+        title={`${alerts.length} ${pluralize("Alert", alerts.length)}`}
+        placement={"top-end"}
       >
-        {alertsContent}
-      </Box>
-    )
+        <IconButton
+          aria-controls={"alerts"}
+          aria-haspopup={"true"}
+          aria-label={`show ${alerts.length} alerts`}
+          color={"inherit"}
+          onClick={handleOpenAlerts}
+        >
+          <Badge
+            badgeContent={alerts.length}
+            color={"error"}
+            invisible={alerts.length === 0}
+          >
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+      </Tooltip>
+      <Popover
+        anchorEl={anchorAlerts}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        id={"alerts"}
+        keepMounted
+        onClose={handleCloseAlerts}
+        open={!!anchorAlerts}
+        PaperProps={{ sx: { paddingY: 1, width: { xs: "100%", sm: "auto" } } }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+      >
+        {alertsContent && (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+            }}
+          >
+            {alertsContent}
+          </Box>
+        )}
+      </Popover>
+    </Box>
   );
 };
