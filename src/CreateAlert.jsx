@@ -10,7 +10,6 @@ import {
   Radio,
   RadioGroup,
   TextField,
-  Typography,
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -19,6 +18,7 @@ import * as yup from "yup";
 
 import { AlertsContext } from "./AlertsContext";
 import { ALERT_ACTIONS } from "./AlertsReducer";
+import { PageHeading } from "./PageHeading";
 
 const ControlledTextField = ({
   control,
@@ -119,7 +119,7 @@ export const ControlledRadioInput = ({ name, control }) => {
         defaultValue={"warning"}
         render={({ field: { onChange, value } }) => (
           <RadioGroup onChange={onChange} value={value}>
-            {radioButtons}
+            <>{radioButtons}</>
           </RadioGroup>
         )}
       />
@@ -176,12 +176,7 @@ export const CreateAlert = () => {
       }}
     >
       <FormLabel id={"create-alert"}>
-        <Typography
-          component={"h1"}
-          sx={{ fontSize: 24, fontWeight: 700, marginY: 2 }}
-        >
-          Create Alert
-        </Typography>
+        <PageHeading heading={"Create Alert"} />
       </FormLabel>
       <ControlledTextField
         control={control}

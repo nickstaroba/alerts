@@ -11,7 +11,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import * as React from "react";
+import React from "react";
 import { Link } from "wouter";
 
 import { AlertsManager } from "./AlertsManager";
@@ -26,8 +26,8 @@ const Logo = ({ sx }) => (
   <Box sx={{ display: "flex", alignItems: "center", ...sx }}>
     <NotificationImportantIcon sx={{ mr: 1 }} />
     <Typography
-      component={Link}
-      href={"/create"}
+      component={"a"}
+      href={"/alerts/"}
       noWrap
       sx={{
         color: "inherit",
