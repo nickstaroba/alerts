@@ -28,7 +28,7 @@
   "dependencies": {
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
-    "@eterna/eslint-config-javascript": "1.2.1",
+    "@eterna/eslint-config-javascript": "1.2.2",
     "@eterna/eslint-config-react": "1.1.0",
     "@hookform/resolvers": "2.9.10",
     "@mui/icons-material": "5.11.0",
