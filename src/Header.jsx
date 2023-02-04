@@ -26,8 +26,8 @@ const Logo = ({ sx }) => (
   <Box sx={{ display: "flex", alignItems: "center", ...sx }}>
     <NotificationImportantIcon sx={{ mr: 1 }} />
     <Typography
-      component={"a"}
-      href={"/alerts/"}
+      component={Link}
+      href={"/"}
       noWrap
       sx={{
         color: "inherit",
@@ -78,17 +78,19 @@ const MobileNavigation = () => {
         sx={{ display: { xs: "block", md: "none" } }}
         transformOrigin={{ horizontal: "left", vertical: "top" }}
       >
-        <>
-          {pages.map((page) => (
-            <MenuItem
-              key={page.title}
-              onClick={handleCloseNavigation}
-              sx={{ a: { color: "#000", textDecoration: "none" } }}
-            >
-              <Link href={page.href}>{page.title}</Link>
-            </MenuItem>
-          ))}
-        </>
+        <Box>
+          <>
+            {pages.map((page) => (
+              <MenuItem
+                key={page.title}
+                onClick={handleCloseNavigation}
+                sx={{ a: { color: "#000", textDecoration: "none" } }}
+              >
+                <Link href={page.href}>{page.title}</Link>
+              </MenuItem>
+            ))}
+          </>
+        </Box>
       </Menu>
     </Box>
   );
@@ -96,20 +98,22 @@ const MobileNavigation = () => {
 
 const Navigation = () => (
   <Box sx={{ display: { xs: "none", md: "flex" }, flexGrow: 1 }}>
-    <>
-      {pages.map((page) => (
-        <Button
-          key={page.title}
-          sx={{
-            my: 2,
-            minWidth: "auto",
-            a: { color: "#fff", textDecoration: "none" },
-          }}
-        >
-          <Link href={page.href}>{page.title}</Link>
-        </Button>
-      ))}
-    </>
+    <Box>
+      <>
+        {pages.map((page) => (
+          <Button
+            key={page.title}
+            sx={{
+              my: 2,
+              minWidth: "auto",
+              a: { color: "#fff", textDecoration: "none" },
+            }}
+          >
+            <Link href={page.href}>{page.title}</Link>
+          </Button>
+        ))}
+      </>
+    </Box>
   </Box>
 );
 
