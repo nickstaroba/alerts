@@ -10,7 +10,7 @@ export default function App() {
     <>
       <Header />
       <Container sx={{ paddingY: 2 }} maxWidth={"sm"}>
-        <Route path="/">
+        <Route path="/create">
           <CreateAlert />
         </Route>
         <Route path="/page/:id">
