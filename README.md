@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[nickstaroba.com/alerts](https://nickstaroba.com/alerts)
+[https://nickstaroba.com/alerts/](https://nickstaroba.com/alerts/)
 
 ## Installation
 

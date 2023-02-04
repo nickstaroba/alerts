@@ -11,8 +11,7 @@
     "lint::eslint": "eslint \"**/*.{js,jsx}\" --fix",
     "lint::prettier": "prettier \"./**/*.{css,html,js,json,jsx,md}\" --write",
     "prepare": "husky install",
-    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "test": "react-scripts test"
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start"
   },
   "browserslist": {
     "production": [
