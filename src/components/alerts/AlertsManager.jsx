@@ -3,9 +3,9 @@ import { Badge, Box, IconButton, Popover, Tooltip } from "@mui/material";
 import pluralize from "pluralize";
 import React, { useContext, useEffect } from "react";
 
+import { AlertsContext } from "../../contexts/AlertsContext";
+import { ALERT_ACTIONS } from "../../reducers/AlertsReducer";
 import { Alert } from "./Alert";
-import { AlertsContext } from "./AlertsContext";
-import { ALERT_ACTIONS } from "./AlertsReducer";
 
 export const AlertsManager = () => {
   const { state: alerts, dispatch } = useContext(AlertsContext);

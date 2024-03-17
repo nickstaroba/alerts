@@ -14,7 +14,7 @@ import {
 import React from "react";
 import { Link } from "wouter";
 
-import { AlertsManager } from "./AlertsManager";
+import { AlertsManager } from "./alerts/AlertsManager";
 
 const pages = [
   { href: "/create", title: "Create Alert" },

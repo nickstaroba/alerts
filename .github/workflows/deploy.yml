@@ -1,22 +1,28 @@
-name: Deploy
+name: "Deploy"
+
+run-name: ${{ github.workflow }}
 
 on:
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 16
+
       - name: Install dependencies
         run: npm install
+
       - name: Build NPM package
-        run: npm run build
+        run: npm run build && cp src/404.html build
+
       - name: Publish github pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git

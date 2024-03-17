@@ -16,9 +16,9 @@ import { Controller, useForm } from "react-hook-form";
 import { v4 as uuid } from "uuid";
 import * as yup from "yup";
 
-import { AlertsContext } from "./AlertsContext";
-import { ALERT_ACTIONS } from "./AlertsReducer";
-import { PageHeading } from "./PageHeading";
+import { AlertsContext } from "../../contexts/AlertsContext";
+import { ALERT_ACTIONS } from "../../reducers/AlertsReducer";
+import { PageHeading } from "../PageHeading";
 
 const ControlledTextField = ({
   control,

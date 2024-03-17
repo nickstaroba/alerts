@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import { Route } from "wouter";
 
-import { CreateAlert } from "./CreateAlert";
+import { CreateAlert } from "./alerts/CreateAlert";
 import { Header } from "./Header";
 import { PageHeading } from "./PageHeading";
 

@@ -1,7 +1,7 @@
 import React from "react";
 
+import { useAlertsReducer } from "../reducers/AlertsReducer";
 import { AlertsContext } from "./AlertsContext";
-import { useAlertsReducer } from "./AlertsReducer";
 
 export const AlertsProvider = ({ children }) => {
   const [state, dispatch] = useAlertsReducer();

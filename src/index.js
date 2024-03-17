@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Router } from "wouter";
 
-import { AlertsProvider } from "./AlertsProvider";
-import App from "./App";
+import App from "./components/App";
+import { AlertsProvider } from "./contexts/AlertsProvider";
 import theme from "./theme";
 
 const currentLocation = () => window.location.hash.replace(/^#/, "") || "/";
